@@ -19,7 +19,8 @@ type calc struct {
 
 	output  *widget.Label
 	buttons map[string]*widget.Button
-	window  fyne.Window
+
+	content fyne.CanvasObject
 }
 
 func (c *calc) display(newtext string) {
@@ -130,15 +131,24 @@ func (c *calc) onCopyShortcut(shortcut fyne.Shortcut) {
 	shortcut.(*fyne.ShortcutCopy).Clipboard.SetContent(c.equation)
 }
 
-func (c *calc) loadUI(app fyne.App) {
-	c.output = &widget.Label{Alignment: fyne.TextAlignTrailing}
-	c.output.TextStyle.Monospace = true
+func (c *calc) loadUI(window fyne.Window) {
+	canvas := window.Canvas()
+	canvas.SetOnTypedRune(c.onTypedRune)
+	canvas.SetOnTypedKey(c.onTypedKey)
+	canvas.AddShortcut(&fyne.ShortcutCopy{}, c.onCopyShortcut)
+	canvas.AddShortcut(&fyne.ShortcutPaste{}, c.onPasteShortcut)
+}
+
+func newCalculator() *calc {
+	var c calc
+
+	c.buttons = make(map[string]*widget.Button, 19)
+	c.output = widget.NewLabelWithStyle("", fyne.TextAlignTrailing, fyne.TextStyle{Monospace: true})
 
 	equals := c.addButton("=", c.evaluate)
 	equals.Importance = widget.HighImportance
 
-	c.window = app.NewWindow("Calc")
-	c.window.SetContent(container.NewGridWithColumns(1,
+	c.content = container.NewGridWithColumns(1,
 		c.output,
 		container.NewGridWithColumns(4,
 			c.addButton("C", c.clear),
@@ -164,20 +174,11 @@ func (c *calc) loadUI(app fyne.App) {
 			container.NewGridWithColumns(2,
 				c.digitButton(0),
 				c.charButton('.')),
-			equals)),
-	)
+			equals))
 
-	canvas := c.window.Canvas()
-	canvas.SetOnTypedRune(c.onTypedRune)
-	canvas.SetOnTypedKey(c.onTypedKey)
-	canvas.AddShortcut(&fyne.ShortcutCopy{}, c.onCopyShortcut)
-	canvas.AddShortcut(&fyne.ShortcutPaste{}, c.onPasteShortcut)
-	c.window.Resize(fyne.NewSize(200, 300))
-	c.window.Show()
+	return &c
 }
 
-func newCalculator() *calc {
-	return &calc{
-		buttons: make(map[string]*widget.Button, 19),
-	}
+func (c *calc) Content() fyne.CanvasObject {
+	return c.content
 }
