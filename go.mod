@@ -1,4 +1,4 @@
-module github.com/fyne-io/calculator
+module github.com/BieHDC/fyne-calculator
 
 go 1.17
 

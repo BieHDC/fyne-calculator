@@ -6,6 +6,8 @@ package main
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	
+	"github.com/BieHDC/fyne-calculator/calc"
 )
 
 func main() {
@@ -13,7 +15,7 @@ func main() {
 	app.SetIcon(resourceIconPng)
 
 	window := app.NewWindow("Calc")
-	c := newCalculator()
+	c := calc.NewCalculator()
 	c.ConnectKeyboard(window)
 	window.SetContent(c.Content())
 

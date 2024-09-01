@@ -1,6 +1,6 @@
 [Details]
   Icon = "Icon.png"
   Name = "Calculator"
-  ID = "io.fyne.calculator"
-  Version = "1.1.0"
-  Build = 11
+  ID = "github.BieHDC.calculator"
+  Version = "1.0.0"
+  Build = 1

@@ -1,4 +1,4 @@
-package main
+package calc
 
 import (
 	"testing"
@@ -11,7 +11,7 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["1"])
@@ -23,7 +23,7 @@ func TestAdd(t *testing.T) {
 }
 
 func TestSubtract(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["2"])
@@ -35,7 +35,7 @@ func TestSubtract(t *testing.T) {
 }
 
 func TestDivide(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["3"])
@@ -47,7 +47,7 @@ func TestDivide(t *testing.T) {
 }
 
 func TestMultiply(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["5"])
@@ -59,7 +59,7 @@ func TestMultiply(t *testing.T) {
 }
 
 func TestParenthesis(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["2"])
@@ -75,7 +75,7 @@ func TestParenthesis(t *testing.T) {
 }
 
 func TestDot(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["2"])
@@ -91,7 +91,7 @@ func TestDot(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["1"])
@@ -102,7 +102,7 @@ func TestClear(t *testing.T) {
 }
 
 func TestContinueAfterResult(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	calc.ConnectKeyboard(test.NewApp().NewWindow(""))
 
 	test.Tap(calc.buttons["6"])
@@ -117,7 +117,7 @@ func TestContinueAfterResult(t *testing.T) {
 }
 
 func TestKeyboard(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	window := test.NewApp().NewWindow("")
 	calc.ConnectKeyboard(window)
 
@@ -132,7 +132,7 @@ func TestKeyboard(t *testing.T) {
 }
 
 func TestKeyboard_Buttons(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	window := test.NewApp().NewWindow("")
 	calc.ConnectKeyboard(window)
 
@@ -148,7 +148,7 @@ func TestKeyboard_Buttons(t *testing.T) {
 }
 
 func TestKeyboard_Backspace(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	window := test.NewApp().NewWindow("")
 	calc.ConnectKeyboard(window)
 
@@ -167,7 +167,7 @@ func TestKeyboard_Backspace(t *testing.T) {
 }
 
 func TestError(t *testing.T) {
-	calc := newCalculator()
+	calc := NewCalculator()
 	window := test.NewApp().NewWindow("")
 	calc.ConnectKeyboard(window)
 
@@ -188,7 +188,7 @@ func TestError(t *testing.T) {
 
 func TestShortcuts(t *testing.T) {
 	app := test.NewApp()
-	calc := newCalculator()
+	calc := NewCalculator()
 	window := app.NewWindow("")
 	calc.ConnectKeyboard(window)
 	clipboard := window.Clipboard()

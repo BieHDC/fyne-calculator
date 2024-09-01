@@ -1,6 +1,4 @@
-//go:generate fyne bundle -o data.go Icon.png
-
-package main
+package calc
 
 import (
 	"errors"
@@ -192,7 +190,7 @@ func (c *calc) ConnectKeyboard(window fyne.Window) {
 	canvas.AddShortcut(&fyne.ShortcutPaste{}, c.onPasteShortcut)
 }
 
-func newCalculator() *calc {
+func NewCalculator() *calc {
 	var c calc
 
 	c.buttons = make(map[string]*widget.Button, 19)
