@@ -14,7 +14,7 @@ func main() {
 
 	window := app.NewWindow("Calc")
 	c := newCalculator()
-	c.loadUI(window)
+	c.ConnectKeyboard(window)
 	window.SetContent(c.Content())
 
 	window.Resize(fyne.NewSize(200, 300))
